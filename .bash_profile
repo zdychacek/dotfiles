@@ -2,8 +2,6 @@
 export PATH="$HOME/bin:$PATH"
 
 # Load the shell dotfiles, and then some:
-# * ~/.path can be used to extend `$PATH`.
-# * ~/.extra can be used for other settings you donÃ¢ÂÂt want to commit.
 for file in ~/.bash/.{bash_prompt,exports,aliases,functions}; do
 	[ -r "$file" ] && [ -f "$file" ] && source "$file"
 done
@@ -53,7 +51,5 @@ fi
 # init z! (https://github.com/rupa/z)
 . ~/.bash/z.sh
 
-# export PATH="${PATH}:~/Downloads/adt/sdk/platform-tools:~/Downloads/adt/sdk/tools"
-export PATH="${PATH}:~/Downloads/android-sdk-macosx/tools:~/Downloads/android-sdk-macosx/platform-tools"
-
+# file to put local | redefined settings
 [ -f ~/.localrc ] && source ~/.localrc
