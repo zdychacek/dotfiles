@@ -19,6 +19,8 @@ alias srv="serve"
 alias srvp="php -S 0.0.0.0:3000"
 alias vag="vagrant up && vagrant ssh"
 
+complete -o default -o nospace -F _git g
+
 # Detect which `ls` flavor is in use
 if ls --color > /dev/null 2>&1; then # GNU `ls`
 	colorflag="--color"
