@@ -1,21 +1,90 @@
-[color]
-  ui = true
-[core]
-  excludesfile = ~/.gitignore_global
 [alias]
   ll = log --pretty=format:"%C(yellow)%h%Cred%d\\ %Creset%s%Cblue\\ [%cn]" --decorate --numstat
   ls = log --pretty=format:"%C(yellow)%h\\ %ad%Cred%d\\ %Creset%s%Cblue\\ [%cn]" --decorate --date=short
-  dl = "!git ll -1"
-  dlc = diff --cached HEAD^
-  la = "!git config -l | grep alias | cut -c 7-"
-  co = checkout
-  c = commit -m
-  ds = diff --staged
-  amend = commit --amend -C HEAD
-  undo = reset --soft HEAD^
-  standup = log --since="yesterday" --oneline --author='Martin Katreník'
+  # dlc = diff --cached HEAD^
   g = log --graph --date-order -C -M --pretty=format:'%C(yellow)%h%Creset - %C(green)%ad%Creset - %C(blue)%an%Creset %C(bold red)>%Creset %C(white)%s%Creset %C(bold red)%d%Creset' --abbrev-commit --date=short
+  
+  # Show the diff between the latest commit and the current state
+  d = !"git diff-index --quiet HEAD -- || clear; git --no-pager diff --patch-with-stat"
+
+  # `git di $number` shows the diff between the state `$number` revisions ago and the current state
+  di = !"d() { git diff --patch-with-stat HEAD~$1; }; git diff-index --quiet HEAD -- || clear; d"
+
+  # Commit all changes
+  ca = !git add -A && git commit -av
+  
+  # Switch to a branch, creating it if necessary
+  go = "!f() { git checkout -b \"$1\" 2> /dev/null || git checkout \"$1\"; }; f"
+
+
+  # Show verbose output about tags, branches or remotes
+  tags = tag -l
+  branches = branch -a
+  remotes = remote -v
+  
+  # Credit an author on the latest commit
+  # credit = "!f() { git commit --amend --author \"$1 <$2>\" -C HEAD; }; f"
+  
+  # Interactive rebase with the given number of latest commits
+  reb = "!r() { git rebase -i HEAD~$1; }; r"
+  
+  # Find branches containing commit
+  fb = "!f() { git branch -a --contains $1; }; f"
+  
+  # Find tags containing commit
+  ft = "!f() { git describe --always --contains $1; }; f"
+  
+  # Find commits by source code
+  fcs = "!f() { git log --pretty=format:'%C(yellow)%h  %Cblue%ad  %Creset%s%Cgreen  [%cn] %Cred%d' --decorate --date=short -S$1; }; f"
+  
+  # Find commits by commit message
+  fcm = "!f() { git log --pretty=format:'%C(yellow)%h  %Cblue%ad  %Creset%s%Cgreen  [%cn] %Cred%d' --decorate --date=short --grep=$1; }; f"
+  
+  # Remove branches that have already been merged with master
+  dm = "!git branch --merged | grep -v '\\*' | xargs -n 1 git branch -d"
+
+  la = "!git config -l | grep alias | cut -c 7-"
+
+  c = commit
+  undo = reset --soft HEAD^  
   s = status -s
+
+[apply]
+  # Detect whitespace errors when applying a patch
+  whitespace = fix
+
+[core]
+  excludesfile = ~/.gitignore_global
+  # Treat spaces before tabs and all kinds of trailing whitespace as an error.
+  # [default] trailing-space: looks for spaces at the end of a line
+  # [default] space-before-tab: looks for spaces before tabs at the beginning of
+  # a line
+  whitespace = space-before-tab,-indent-with-non-tab,trailing-space
+  # Make `git rebase` safer on OS X
+  # More info: <http://www.git-tower.com/blog/make-git-rebase-safe-on-osx/>
+  trustctime = false
+
+[color]
+  # Use colors in Git commands that are capable of colored output when
+  # outputting to the terminal. (This is the default setting in Git ≥ 1.8.4.)
+  ui = auto
+[color "branch"]
+  current = yellow reverse
+  local = yellow
+  remote = green
+[color "diff"]
+  meta = yellow bold
+  frag = magenta bold
+  old = red bold
+  new = green bold
+[color "status"]
+  added = yellow
+  changed = green
+  untracked = cyan
+[merge]
+  # Include summaries of merged commits in newly created merge commit messages
+  log = true
+
 [push]
   default = upstream
 [merge]
