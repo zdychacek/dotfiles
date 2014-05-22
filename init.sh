@@ -4,7 +4,7 @@ git pull origin master
 
 function doIt() {
 	rsync --exclude ".git/" --exclude ".DS_Store" --exclude "init.sh" \
-		--exclude "README.md" --exclude "LICENSE-MIT.txt" -avh --no-perms . ~
+		--exclude "README.md" --exclude "LICENSE" -avh --no-perms . ~
 	source ~/.bashrc
 }
 
