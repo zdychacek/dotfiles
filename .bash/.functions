@@ -194,3 +194,8 @@ function ex() {
         echo "'$1' is not a valid file"
     fi
 }
+
+# get cannonical file path
+function can() {
+	[[ $1 = /* ]] && echo "$1" || echo "$PWD/${1#./}"
+}
