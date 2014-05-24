@@ -19,6 +19,9 @@ alias srv="serve"
 alias srvp="php -S 0.0.0.0:3000"
 alias vag="vagrant up && vagrant ssh"
 
+# git completion for alias g
+git_compl="/Applications/Xcode.app/Contents/Developer/usr/share/git-core/git-completion.bash"
+[ -f $git_compl ] && . $git_compl
 complete -o default -o nospace -F _git g
 
 # Detect which `ls` flavor is in use
