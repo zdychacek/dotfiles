@@ -137,3 +137,4 @@ command -v npm > /dev/null && alias npme="npm --registry http://registry.npmjs.e
 alias s='open -a "Sublime Text"'
 
 alias glb='git ls $(parse_git_branch) --not master'
+alias gs='git status'
