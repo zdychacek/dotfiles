@@ -18,9 +18,9 @@ alias j="jobs"
 alias sr="php -S 0.0.0.0:3000"
 
 alias vs="vagrant ssh"
-alias vsync="rsync -vr -e 'ssh -p 2222 -i /Users/martin/.vagrant.d/insecure_private_key'"
+alias vsync="rsync -vr -e 'ssh -p 2222 -i $HOME/.vagrant.d/insecure_private_key vagrant@localhost'"
 
-# git completion for alias g
+# git completion also for alias g
 git_compl="/Applications/Xcode.app/Contents/Developer/usr/share/git-core/git-completion.bash"
 [ -f $git_compl ] && . $git_compl
 complete -o default -o nospace -F _git g

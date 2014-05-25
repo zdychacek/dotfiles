@@ -39,7 +39,7 @@ cd "$(dirname "${BASH_SOURCE}")"
 git pull origin master
 
 function doIt() {
-    rsync --exclude ".git/" --exclude ".DS_Store" --exclude "init.sh" \
+    rsync --exclude ".git/" --exclude ".DS_Store" --exclude "sync.sh" \
         --exclude "README.md" --exclude "LICENSE" -vr . $dest
 
     source ~/.bashrc
