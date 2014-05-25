@@ -43,13 +43,15 @@ complete -o "nospace" -W "Contacts Calendar Dock Finder Mail Safari iTunes Syste
 # [ -s $HOME/.nvm/nvm.sh ] && . $HOME/.nvm/nvm.sh # This loads NVM
 
 if [ $(uname -s) == "Darwin" ] && [ -f $(brew --prefix)/etc/bash_completion ]; then
-  . $(brew --prefix)/etc/bash_completion
+  source $(brew --prefix)/etc/bash_completion
 else
 	[ -f /etc/bash_completion ] && source /etc/bash_completion
 fi
 
 # init z! (https://github.com/rupa/z)
 . ~/.bash/z.sh
+
+[ -f ~/.nvm/nvm.sh ] && source ~/.nvm/nvm.sh
 
 # file to put local | redefined settings
 [ -f ~/.localrc ] && source ~/.localrc
