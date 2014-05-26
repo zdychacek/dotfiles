@@ -15,8 +15,10 @@ To update without confirmation dialog, add -f flag:
 ./sync.sh -f
 ```
 
-To update `~` on custom location, like remote server, add -d flag with value valid rsync path:
+To update `~` on custom location, like remote server, add -d flag where value is valid rsync path:
 
 ```bash
 ./sync.sh -f -d myserver:~
 ```
+
+Put your local settings into `~/.localrc`, this file is not checked into git
