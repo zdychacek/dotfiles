@@ -4,6 +4,9 @@
 
   g = log --graph --date-order -C -M --pretty=format:'%C(yellow)%h%Creset - %C(green)%ad%Creset - %C(blue)%an%Creset %C(bold red)>%Creset %C(white)%s%Creset %C(bold red)%d%Creset' --abbrev-commit --date=short
   
+  # log commits in branch
+  lb = "!f() { git ls $(git rev-parse --abbrev-ref HEAD) --not master; }; f"
+
   # Show the diff between the latest commit and the current state
   d = !"git diff-index --quiet HEAD -- || clear; git --no-pager diff --patch-with-stat"
 
