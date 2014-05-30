@@ -12,9 +12,6 @@
 
   # `git di $number` shows the diff between the state `$number` revisions ago and the current state
   di = !"d() { git diff --patch-with-stat HEAD~$1; }; git diff-index --quiet HEAD -- || clear; d"
-
-  # Commit all changes
-  ca = !git add -A && git commit -av
   
   # Switch to a branch, creating it if necessary
   go = "!f() { git checkout -b \"$1\" 2> /dev/null || git checkout \"$1\"; }; f"
@@ -24,9 +21,6 @@
   tags = tag -l
   branches = branch -a
   remotes = remote -v
-  
-  # Credit an author on the latest commit
-  # credit = "!f() { git commit --amend --author \"$1 <$2>\" -C HEAD; }; f"
   
   # Interactive rebase with the given number of latest commits
   reb = "!r() { git rebase -i HEAD~$1; }; r"
@@ -46,10 +40,16 @@
   # Remove branches that have already been merged with master
   dm = "!git branch --merged | grep -v '\\*' | xargs -n 1 git branch -d"
 
+  # list aliases
   la = "!git config -l | grep alias | cut -c 7-"
+  
+  # Commit all changes
+  ca = !git add -A && git commit -av
 
   c = commit
-  undo = reset --soft HEAD^  
+
+  # undo last commit
+  undo = reset --soft HEAD^
   s = status -s
 
 [apply]
@@ -68,8 +68,6 @@
   trustctime = false
 
 [color]
-  # Use colors in Git commands that are capable of colored output when
-  # outputting to the terminal. (This is the default setting in Git ≥ 1.8.4.)
   ui = auto
 [color "branch"]
   current = yellow reverse

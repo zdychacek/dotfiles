@@ -12,6 +12,7 @@ alias dl="cd ~/Downloads"
 alias dt="cd ~/Desktop"
 alias dev="cd ~/Dev"
 alias g="git"
+alias gs='git status'
 alias h="history"
 alias j="jobs"
 
@@ -20,9 +21,9 @@ alias sr="php -S 0.0.0.0:3000"
 alias vs="vagrant ssh"
 alias vsync="rsync -vr -e 'ssh -p 2222 -i $HOME/.vagrant.d/insecure_private_key vagrant@localhost'"
 
-# git completion also for alias g
+# git completion also for alias g (+OSX fix)
 git_compl="/Applications/Xcode.app/Contents/Developer/usr/share/git-core/git-completion.bash"
-[ -f $git_compl ] && . $git_compl
+[ -f $git_compl ] && source $git_compl
 complete -o default -o nospace -F _git g
 
 # Detect which `ls` flavor is in use
@@ -120,6 +121,7 @@ for method in GET HEAD POST PUT DELETE TRACE OPTIONS; do
 	# command -v curl > /dev/null && alias curl="curl -H 'Content-type: application/json' "
 	alias "$method"="curl -X '$method'"
 done
+# POST json payload
 alias JPOST="curl -H 'Content-type: application/json' "
 
 # Make Grunt print stack traces by default
@@ -136,6 +138,3 @@ alias reload="exec $SHELL -l"
 command -v npm > /dev/null && alias npme="npm --registry http://registry.npmjs.eu"
 
 alias s='open -a "Sublime Text"'
-
-alias glb='git ls $(parse_git_branch) --not master'
-alias gs='git status'

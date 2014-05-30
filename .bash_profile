@@ -49,8 +49,9 @@ else
 fi
 
 # init z! (https://github.com/rupa/z)
-. ~/.bash/z.sh
+source ~/.bash/z.sh
 
+# node version manager [https://github.com/creationix/nvm]
 [ -f ~/.nvm/nvm.sh ] && source ~/.nvm/nvm.sh
 
 # file to put local | redefined settings
