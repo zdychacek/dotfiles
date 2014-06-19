@@ -21,4 +21,10 @@ To update `~` on custom location, like remote server, add -d flag where value is
 ./sync.sh -f -d myserver:~
 ```
 
-Put your local settings into `~/.localrc`, this file is not checked into git
+Put your local settings into `~/.localrc`, this file is not checked into git.
+For example that's where you want to put your git config params, because ~/.gitconfig is rewritten on each sync
+
+```
+git config --global user.name "your name"
+git config --global user.email "your email"
+```
