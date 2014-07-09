@@ -57,21 +57,13 @@ function pretty_pwd() {
 	echo $PWD | sed "s:\/Users\/$USER:~:g" #| sed "s:\([^/]\)[^/]*/:\1/:g"
 }
 
-export PS1="\[$MAGENTA\]\u @ \h \[$WHITE\]: \[$ORANGE\]\$(pretty_pwd) \[$PURPLE\]\$(parse_git_branch)\n> \[$RESET\]"
+[ "$SSH_CONNECTION" -a "$SSH_TTY" == $(tty) ] && USER_COLOR=$GREEN || USER_COLOR=$MAGENTA
+export USER_COLOR
+
+export PS1="\[$USER_COLOR\]\u @ \h \[$WHITE\]: \[$ORANGE\]\$(pretty_pwd) \[$PURPLE\]\$(parse_git_branch)\n> \[$RESET\]"
 
 # export PS1="\[${BOLD}${MAGENTA}\]\u \[$WHITE\]at \[$ORANGE\]\h \[$WHITE\]in \[$GREEN\]\w\[$WHITE\]\$([[ -n \$(git branch 2> /dev/null) ]] && echo \" on \")\[$PURPLE\]\$(parse_git_branch)\[$WHITE\]\n\$ \[$RESET\]"
 # export PS2="\[$ORANGE\]→ \[$RESET\]"
-
-# # Git
-# # You must install Git first - ""
-# alias gs='git status'
-# alias ga='git add .'
-# alias gc='git commit -m' # requires you to type a commit message
-# alias gp='git push'
-
-
-
-# ### Misc
 
 # # Only show the current directory's name in the tab
 export PROMPT_COMMAND='echo -ne "\033]0;${PWD##*/}\007"'
