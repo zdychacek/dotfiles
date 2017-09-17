@@ -60,7 +60,7 @@ function pretty_pwd() {
 [ "$SSH_CONNECTION" -a "$SSH_TTY" == $(tty) ] && USER_COLOR=$GREEN || USER_COLOR=$MAGENTA
 export USER_COLOR
 
-export PS1="\[$USER_COLOR\]\u @ \h \[$WHITE\]: \[$ORANGE\]\$(pretty_pwd) \[$PURPLE\]\$(parse_git_branch)\n> \[$RESET\]"
+export PS1="\[$USER_COLOR\]\u @ \h \[$WHITE\]: \[$ORANGE\]\$(pretty_pwd) \[$PURPLE\]\$(parse_git_branch)\nλ \[$RESET\]"
 
 # export PS1="\[${BOLD}${MAGENTA}\]\u \[$WHITE\]at \[$ORANGE\]\h \[$WHITE\]in \[$GREEN\]\w\[$WHITE\]\$([[ -n \$(git branch 2> /dev/null) ]] && echo \" on \")\[$PURPLE\]\$(parse_git_branch)\[$WHITE\]\n\$ \[$RESET\]"
 # export PS2="\[$ORANGE\]→ \[$RESET\]"
